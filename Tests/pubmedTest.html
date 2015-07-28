@@ -3,7 +3,10 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/q.js/1.0.0/q.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+
 </head>
 <script src="../pubmed.js"></script>
 <body>
@@ -11,7 +14,33 @@
 </body>
 <script>
     function test(){
-        pubmed.getIds();
+        var ids = [];
+        ids.push("26205025");
+        ids.push("23651287");
+        pubmed.getCitationsFromIds(ids).then(function(result){
+           console.log(JSON.stringify(result));
+        });
+
+        var terms =[];
+        terms.push("gene");
+        terms.push("replicons");
+
+        var authors = [];
+        authors.push("Douglas Densmore")
+
+        var db = "pubmed";
+
+        pubmed.getPubMedIds(terms,authors,db).then(function(result){
+            alert(result);
+        });
+
+
+
+
+        pubmed.getCitations(terms,authors,db).then(function(result){
+           alert(JSON.stringify(result));
+        });
+
     }
 </script>
 </html>
